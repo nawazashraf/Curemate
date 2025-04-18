@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
 
   final List<Widget> _screens = [
     HomeContent(),
-    Hospital(),
+    HospitalMapScreen(),
     History(),
     Settings(),
   ];
