@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:math'; // Import math functions
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -25,7 +25,7 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
     _initLocationAndHospitals();
   }
 
-  // Get user location and nearby hospitals
+
   Future<void> _initLocationAndHospitals() async {
     try {
       Location location = Location();
@@ -34,7 +34,7 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
       final userLocation = await location.getLocation();
       _userLocation = LatLng(userLocation.latitude!, userLocation.longitude!);
 
-      // Load nearby hospitals from Overpass API
+
       final hospitals = await _fetchNearbyHospitals(_userLocation!);
 
       setState(() {
@@ -61,12 +61,11 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
     }
   }
 
-  // Fetch hospitals within a certain radius from user location
   Future<List<Map<String, dynamic>>> _fetchNearbyHospitals(LatLng location) async {
     final lat = location.latitude;
     final lon = location.longitude;
 
-    final radius = 100000; // Increased search radius to 100 km
+    final radius = 100000;
 
     final overpassQuery = '''
       [out:json];
@@ -92,10 +91,10 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
         final hospitalLocation = LatLng(lat, lon);
 
         if (hospital['tags']?['name'] == null || hospital['lat'] == null || hospital['lon'] == null) {
-          continue; // Skip incomplete data
+          continue;
         }
 
-        // Calculate the distance using Haversine formula
+
         double distance = await _calculateDistance(hospitalLocation);
 
         nearbyHospitals.add({
@@ -105,7 +104,6 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
         });
       }
 
-      // Sort hospitals by distance
       nearbyHospitals.sort((a, b) => a['distance'].compareTo(b['distance']));
 
       return nearbyHospitals;
@@ -114,7 +112,6 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
     }
   }
 
-  // Calculate the distance using Haversine formula
   Future<double> _calculateDistance(LatLng hospitalLocation) async {
     if (_userLocation != null) {
       double lat1 = _userLocation!.latitude;
@@ -122,7 +119,7 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
       double lat2 = hospitalLocation.latitude;
       double lon2 = hospitalLocation.longitude;
 
-      const double R = 6371000; // Earth radius in meters
+      const double R = 6371000;
       double phi1 = _toRadians(lat1);
       double phi2 = _toRadians(lat2);
       double deltaPhi = _toRadians(lat2 - lat1);
@@ -132,13 +129,12 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
           cos(phi1) * cos(phi2) * (sin(deltaLambda / 2) * sin(deltaLambda / 2));
       double c = 2 * atan2(sqrt(a), sqrt(1 - a));
 
-      double distance = R * c; // Distance in meters
+      double distance = R * c;
       return distance;
     }
     return 0.0;
   }
 
-  // Convert degrees to radians
   double _toRadians(double degree) {
     return degree * (pi / 180.0);
   }
@@ -161,7 +157,7 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
               children: [
                 TileLayer(
                   urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  userAgentPackageName: 'com.example.curemate', // Replace with your actual app ID
+                  userAgentPackageName: 'com.example.curemate',
                 ),
                 MarkerLayer(
                   markers: [
@@ -184,13 +180,12 @@ class _HospitalMapScreenState extends State<HospitalMapScreen> {
               itemBuilder: (context, index) {
                 final hospital = _nearbyHospitals[index];
                 final name = hospital['name'];
-                final distance = hospital['distance'] / 1000; // Convert meters to kilometers
+                final distance = hospital['distance'] / 1000;
                 return Card(
                   child: ListTile(
                     title: Text(name),
                     subtitle: Text("${distance.toStringAsFixed(2)} km away"),
                     onTap: () {
-                      // Focus the map on the hospital location
                       _mapController.move(hospital['location'], 14.0);
                     },
                   ),

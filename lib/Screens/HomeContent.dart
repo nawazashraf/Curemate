@@ -15,7 +15,7 @@ class _HomeContentState extends State<HomeContent> {
   bool _isLoading = false;
 
   final apiKey = dotenv.env['API_KEY'];
-  //final String apiKey = '$apiKey'; // Replace with your actual Gemini API key
+
   @override
   /*void initState() {
     // TODO: implement initState

@@ -13,7 +13,7 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
 
-    // Safely access context after first frame
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await precacheImage(const AssetImage('assets/images/loginImage.jpg'), context);
       if (mounted) {
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _buildSocialIcon(String assetPath) {
     return GestureDetector(
       onTap: () {
-        // Social login handling here
+        // Social login authentication
       },
       child: Container(
         height: 50,
