@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 import 'package:curemate/utils/utils.dart';
-import 'package:curemate/Screens/lib/Screens/Icon Widget/IconWidget.dart'; // Adjust path
+import 'package:curemate/lib/Screens/Icon Widget/IconWidget.dart';
 
 class AccountPage extends StatelessWidget {
   static const String keyLanguage = 'key-language';

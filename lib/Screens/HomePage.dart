@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'HomeContent.dart';
-import 'lib/Screens/Hospital.dart';
-import 'lib/Screens/History.dart';
-import 'lib/Screens/SettingsScreens/Settings.dart';
+import 'package:curemate/lib/Screens/History.dart';
+import 'package:curemate/lib/Screens/Hospital.dart';
+import 'package:curemate/lib/Screens/SettingsScreens/Settings.dart';
 
 class Home extends StatefulWidget {
   @override

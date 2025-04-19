@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
-import '../Icon Widget/IconWidget.dart';  // Ensure this path is correct
+import '../Icon Widget/IconWidget.dart';
 import 'package:curemate/utils/utils.dart';
 import 'AccountPage.dart';
 
@@ -46,7 +46,7 @@ class Settings extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.blueGrey.shade50,  // Background color for the user profile section
+        color: Colors.blueGrey.shade50,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
@@ -57,21 +57,21 @@ class Settings extends StatelessWidget {
         ],
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,  // Ensures vertical centering
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Profile picture
           CircleAvatar(
             radius: 40,  // Adjust size as needed
-            backgroundImage: AssetImage('assets/images/user_profile_pic.jpg'), // Replace with actual image path
+            backgroundImage: AssetImage('assets/images/apple.png'),
           ),
           const SizedBox(width: 16),
           // User info (name and userID)
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,  // Ensures the name is centered vertically
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                'Khurshid Ansari',  // Replace with dynamic user name
+                'Khurshid Ansari',
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
@@ -80,7 +80,7 @@ class Settings extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'khurshidbhay@123',  // Replace with dynamic user ID
+                'khurshidbhay@123',
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey.shade600,
